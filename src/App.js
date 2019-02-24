@@ -28,11 +28,12 @@ class App extends Component {
     const fields = this.state.fields;
     const errors = {};
 
-    if (fields['email']) {
-      
-    } else {
-      errors['email'] = 'Please enter an email address';
+    for (const field in fields) {
+      if(fields[field] === '') {
+        errors[field] = 'This is a required field';
+      }
     }
+    
 
     this.setState({ errors });
   }
