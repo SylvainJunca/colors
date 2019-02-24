@@ -6,15 +6,40 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      fields: {},
+      fields: {
+        email: '',
+        phone: '',
+        color: ''
+      },
       errors: {}
     }
   }
 
   handleChange = event => {
     const fields = this.state.fields;
+    const errors = this.state.errors;
     fields[event.target.name] = event.target.value;
+    delete errors[event.target.name];
     this.setState({ fields });
+    this.setState({ errors });
+  }
+
+  validateForm = () => {
+    const fields = this.state.fields;
+    const errors = {};
+
+    if (fields['email']) {
+      
+    } else {
+      errors['email'] = 'Please enter an email address';
+    }
+
+    this.setState({ errors });
+  }
+
+  submitForm = event => {
+    event.preventDefault();
+    this.validateForm();
   }
 
   render() {
@@ -23,7 +48,13 @@ class App extends Component {
         <header className="App-header">
           Color
         </header>
-        <Form fields={this.state.fields} errors={this.state.errors}/>
+        <Form 
+          fields={this.state.fields} 
+          errors={this.state.errors}
+          handleChange={this.handleChange} 
+          validateForm={this.validateForm} 
+          submitForm={this.submitForm}
+        />
       </div>
     );
   }
