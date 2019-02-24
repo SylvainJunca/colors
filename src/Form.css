@@ -1,0 +1,10 @@
+.colorForm {
+  width : 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.formInput {
+  padding: 0.5rem;
+}
