@@ -27,13 +27,21 @@ class App extends Component {
   validateForm = () => {
     const fields = this.state.fields;
     const errors = {};
+    
+    const emailPattern = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    // regular expression found there https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+    if(!emailPattern.test(fields['email'])) {
+      errors['email'] = 'Email should be a valid email';
+    }
+    if (!fields['phone'].match(/^[0-9]{10}$/)) {
+      errors['phone'] = 'Phone number should have the format +1 XXX XXX XX XX (Where X is a digit)';
+    } 
 
     for (const field in fields) {
       if(fields[field] === '') {
         errors[field] = 'This is a required field';
       }
     }
-    
 
     this.setState({ errors });
   }

@@ -6,13 +6,13 @@ class Form extends Component {
       <form className='colorForm' method='post' onSubmit= {this.props.submitForm}>
         <div className='formInput'>
           <label htmlFor='email'>Email</label>
-          <input type='email'
+          <input type='text'
             name='email' value={this.props.fields.email} onChange={this.props.handleChange}/>
           <div className='errorMessage'>{this.props.errors.email}</div>
         </div>
         <div className='formInput'>
           <label htmlFor='phone'>Phone number</label>
-          <input type='text'
+          <input type='text' 
             name='phone' value={this.props.fields.phone} onChange={this.props.handleChange}/>
           <div className='errorMessage'>{this.props.errors.phone}</div>
         </div>
