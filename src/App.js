@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Form from './Form.js';
+import NavBar from './NavBar.js';
 
 class App extends Component {
   constructor(){
@@ -11,7 +12,7 @@ class App extends Component {
         phone: '',
         color: ''
       },
-      component: 'color';
+      page: 'form',
       errors: {},
       formValid: false,
     }
@@ -38,7 +39,7 @@ class App extends Component {
       formValid = false;
     }
     if (!fields['phone'].match(/^[0-9]{10}$/)) {
-      errors['phone'] = 'Phone number should have the format +1 XXX XXX XX XX (Where X is a digit)';
+      errors['phone'] = 'Phone number should have the format +1 XXX XXX XX XX';
       formValid = false;
     } 
 
@@ -69,15 +70,14 @@ class App extends Component {
     this.validateForm();
     if(this.state.formValid){
       alert('yeah');
+      this.setState({ formValid : false });
     }
   }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          Color
-        </header>
+        <NavBar />
         <Form 
           fields={this.state.fields} 
           errors={this.state.errors}
