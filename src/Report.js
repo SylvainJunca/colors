@@ -19,7 +19,7 @@ class Report extends Component {
     return(
      
       <table>
-        <tbody className="reportTable">
+        <tbody>
         {reportColors}
         </tbody>
       </table>
