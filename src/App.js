@@ -31,9 +31,10 @@ class App extends Component {
   }
 
   componentWillUnmount() {
+    // saves the report in LocalStorage found there https://hackernoon.com/how-to-take-advantage-of-local-storage-in-your-react-projects-a895f2b2d3f2
     window.removeEventListener(
       "beforeunload",
-      this.saveStateToLocalStorage.bind(this)
+      this.saveToLocalStorage.bind(this)
     );
 
     // saves if component has a chance to unmount
