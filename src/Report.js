@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Report.css'
 
 class Report extends Component {
   render () {
@@ -10,15 +11,15 @@ class Report extends Component {
     const reportColors = Object.keys(colors).map((color, index) => {
       return (
       <tr key={index}>
-        <td> {color}</td>
-        <td>{colors[color]}</td>
+        <td className='column'> {color}</td>
+        <td className='column'>{colors[color]}</td>
       </tr>
       )
     })
 
     return(
      
-      <table>
+      <table className="reportTable">
         <tbody>
         {reportColors}
         </tbody>
