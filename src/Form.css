@@ -6,9 +6,11 @@
 }
 
 .formInput {
-  padding: 0.5rem;
+  padding-bottom: 1rem; 
 }
-
+.inputField {
+  min-width: 200px;
+}
 .errorMessage {
   color: red;
   font-size: 1rem;
