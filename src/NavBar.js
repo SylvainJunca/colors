@@ -4,8 +4,8 @@ const NavBar = (status) => {
   
   return(
     <div>
-      <span>Form</span>
-      <span>Report</span>
+      <button className='btn btn-link'>Form</button>
+      <button className='btn btn-link'>Report</button>
     </div>
   )
 

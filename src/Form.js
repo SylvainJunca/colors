@@ -5,19 +5,19 @@ class Form extends Component {
     return (
       <form className='colorForm' method='post' onSubmit= {this.props.submitForm}>
         <div className='formInput'>
-          <label htmlFor='email'>Email</label>
+          <label htmlFor='email'>Email </label>
           <input type='text' className='inputField'
             name='email' value={this.props.fields.email} onChange={this.props.handleChange}/>
           <div className='errorMessage'>{this.props.errors.email}</div>
         </div>
         <div className='formInput'>
-          <label htmlFor='phone'>Phone number</label>
+          <label htmlFor='phone'>Phone number </label>
           <input type='text' className='inputField'
             name='phone' value={this.props.fields.phone} onChange={this.props.handleChange}/>
           <div className='errorMessage'>{this.props.errors.phone}</div>
         </div>
         <div className='formInput'>
-          <label htmlFor='color'>Favorite color</label>
+          <label htmlFor='color'>Favorite color </label>
           <input type='text' className='inputField'
             name='color' value={this.props.fields.color} onChange={this.props.handleChange}/>
           <div className='errorMessage'>{this.props.errors.color}</div>
