@@ -15,8 +15,34 @@ class App extends Component {
       },
       page: 'form',
       errors: {},
+      report: []
     }
   }
+  componentDidMount() {
+    localStorage.getItem('report') ? 
+    this.setState({ report: JSON.parse(localStorage.getItem('report'))}) :
+    this.setState({report : []})
+
+    window.addEventListener(
+      "beforeunload",
+      this.saveToLocalStorage.bind(this)
+    );
+
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener(
+      "beforeunload",
+      this.saveStateToLocalStorage.bind(this)
+    );
+
+    // saves if component has a chance to unmount
+    this.saveToLocalStorage();
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem('report', JSON.stringify(this.state.report));
+    }
 
   handleChange = event => {
     const fields = this.state.fields;
@@ -70,14 +96,24 @@ class App extends Component {
   submitForm = event => {
     event.preventDefault();
     if(this.validateForm()){
-      alert('yeah');
+      const report = this.state.report;
+      const answer = {
+        email: this.state.fields['email'],
+        phone: this.state.fields['phone'],
+        color: this.state.fields['color']
+      }
+      report.push(answer);
+      this.setState({report : report});
+      this.setState({page: 'report'});
+
     }
   }
   
   navBar = event => {
-    if(event.target.value !== this.state.page) {
-      this.setState({ page: event.target.value });
-      console.log(event.target.value);
+    if(this.state.report.length) {
+      if(event.target.value !== this.state.page) {
+        this.setState({ page: event.target.value });
+      }
     }
   }
 
@@ -86,7 +122,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        <NavBar navBar={this.navBar} page={this.state.page}/>
+        <NavBar 
+          navBar={this.navBar} 
+          page={this.state.page} 
+          report={this.state.report}
+        />
         {page ? (
           <Form 
             fields={this.state.fields} 
@@ -96,7 +136,7 @@ class App extends Component {
             submitForm={this.submitForm}
           />
         ) : (
-          <Report />
+          <Report report={this.state.report}/>
         )}
       </div>
     );
