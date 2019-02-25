@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Form from './Form.js';
 import NavBar from './NavBar.js';
+import Report from './Report.js';
 
 class App extends Component {
   constructor(){
@@ -72,18 +73,31 @@ class App extends Component {
       alert('yeah');
     }
   }
+  
+  navBar = event => {
+    if(event.target.value !== this.state.page) {
+      this.setState({ page: event.target.value });
+      console.log(event.target.value);
+    }
+  }
 
   render() {
+    const page = (this.state.page === 'form');
+
     return (
       <div className="App">
-        <NavBar />
-        <Form 
-          fields={this.state.fields} 
-          errors={this.state.errors}
-          handleChange={this.handleChange} 
-          validateForm={this.validateForm} 
-          submitForm={this.submitForm}
-        />
+        <NavBar navBar={this.navBar} page={this.state.page}/>
+        {page ? (
+          <Form 
+            fields={this.state.fields} 
+            errors={this.state.errors}
+            handleChange={this.handleChange} 
+            validateForm={this.validateForm} 
+            submitForm={this.submitForm}
+          />
+        ) : (
+          <Report />
+        )}
       </div>
     );
   }
