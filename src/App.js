@@ -14,7 +14,6 @@ class App extends Component {
       },
       page: 'form',
       errors: {},
-      formValid: false,
     }
   }
 
@@ -62,15 +61,15 @@ class App extends Component {
         formValid = false;
       }
     }
-    formValid ? this.setState({formValid : true}) : this.setState({ errors });
+    this.setState({ errors });
+    return formValid;
+    
   }
 
   submitForm = event => {
     event.preventDefault();
-    this.validateForm();
-    if(this.state.formValid){
+    if(this.validateForm()){
       alert('yeah');
-      this.setState({ formValid : false });
     }
   }
 
